@@ -39,6 +39,8 @@ as well as a
 
 The [tidyverse](https://www.tidyverse.org/) is a packages with a common design
 aimed at data science. 
+There is a free book [R for Data Science](https://r4ds.had.co.nz/) that provides
+information about the tidyverse. 
 
 
 ### shiny
