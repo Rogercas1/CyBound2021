@@ -1,0 +1,43 @@
+---
+title: "Finding a line"
+author: "Jarad Niemi"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library("tidyverse"); theme_set(theme_bw())
+```
+
+# Bivariate data
+
+Suppose you have a collection of x-y points, e.g. 
+
+```{r}
+set.seed(20210701)
+n <- 9
+d <- data.frame(x = round(runif(n, 0, 100))) %>%
+  mutate(y = round(x + rnorm(n, 0, 2)))
+d
+```
+
+These points are defined by $(x_i,y_i)$ for $i=1,\ldots,N=9$. 
+For example, for observation 1, we have $(`r d$x[1]`, `r d$y[1]`)$.
+
+```{r}
+ggplot(d, aes(x,y)) +
+  geom_point()
+```
+
+
+
+## Residuals
+
+For a proposed line $y=Mx+b$, the residual for observation $i$ is defined as 
+$$r_i = y_i - (Mx_i + b).$$
+
+One approach to finding a line is to find the values for $M$ and $b$ that 
+minimize the following function
+$$f(M,b) = \sum_{i=1}^N |y_i - (Mx_i + b)|.$$
