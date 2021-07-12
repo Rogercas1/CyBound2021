@@ -93,6 +93,7 @@ For Wednesday
 - Roger will progress through Chapter 13 in R4DS
 - All will watch [Ecosystem Market Series: Data Platforms](https://www.youtube.com/watch?v=AN3PI3YBRsI&t=1s&ab_channel=ILSustainableag)
 - Jarad will update "Finding a line" document with exponential relationship
+- Jarad will send email to Nancy Grudens-Schuck about Canvas module on PEWI Blockchain  
 
 
 
