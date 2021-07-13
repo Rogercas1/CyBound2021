@@ -1,5 +1,34 @@
 # Meeting Notes
 
+This document will contain notes of various meetings throughout the summer. 
+
+## 2021-07-12
+
+Previously
+
+- derived formulas for linear regression
+- data wrangling/analysis of flights data
+  - how to remove NAs
+    - `na.omit()`
+    - `filter()` with `!is.na()`
+  - test using `lm()`
+- Talked about [Illinois Sustainable Ag Partnership Farming for the Future videos](https://ilsustainableag.org/ecomarkets/) 
+
+For Wednesday
+
+- Jarad will call Marshall McDaniel about meeting Thursday at 10am or 1pm
+- Nick will try to create a template shiny app
+- Jarad will look into getting data from [AEE paper](https://lter.kbs.msu.edu/docs/robertson/millar-et-al-2018-aee.pdf)
+- Roger will create functions to find intercept and slope
+- Roger will progress through Chapter 13 in R4DS
+- All will watch [Ecosystem Market Series: Data Platforms](https://www.youtube.com/watch?v=AN3PI3YBRsI&t=1s&ab_channel=ILSustainableag)
+- Jarad will update "Finding a line" document with exponential relationship
+- Jarad will send email to Nancy Grudens-Schuck about Canvas module on PEWI Blockchain  
+
+
+
+
+
 
 ## 2021-07-02
 
@@ -70,30 +99,5 @@ For Thursday
 - finish swirl R programming lessons
 - skim other videos
 - think about regression line
-
-
-## 2021-07-12
-
-Previously
-
-- derived formulas for linear regression
-- data wrangling/analysis of flights data
-  - how to remove NAs
-    - `na.omit()`
-    - `filter()` with `!is.na()`
-  - test using `lm()`
-- Talked about [Illinois Sustainable Ag Partnership Farming for the Future videos](https://ilsustainableag.org/ecomarkets/) 
-
-For Wednesday
-
-- Jarad will call Marshall McDaniel about meeting Thursday at 10am or 1pm
-- Nick will try to create a template shiny app
-- Jarad will look into getting data from [AEE paper](https://lter.kbs.msu.edu/docs/robertson/millar-et-al-2018-aee.pdf)
-- Roger will create functions to find intercept and slope
-- Roger will progress through Chapter 13 in R4DS
-- All will watch [Ecosystem Market Series: Data Platforms](https://www.youtube.com/watch?v=AN3PI3YBRsI&t=1s&ab_channel=ILSustainableag)
-- Jarad will update "Finding a line" document with exponential relationship
-- Jarad will send email to Nancy Grudens-Schuck about Canvas module on PEWI Blockchain  
-
 
 
