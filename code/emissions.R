@@ -6,6 +6,6 @@ emissions <- function(N) {
 }
 
 emissions_hw <- function(N) {
-  2.04*sqrt(exp(.0135*N*(4090-34*N+.075*N^2))) # typo in Table 1??
+  # 2.04*sqrt(exp(.0135*N*(4090-34*N+.075*N^2))) # typo in Table 1??
   2.04*sqrt(exp(.0135*N)*(4090-34*N+.075*N^2))
 }
