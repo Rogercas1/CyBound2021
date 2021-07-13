@@ -101,3 +101,9 @@ For Thursday
 - think about regression line
 
 
+
+## 2021-06-13
+
+Our first meeting was primarily a brainstorm to determine a direction for the
+summer project. 
+This discussion is summarized in brainstorm.md

@@ -40,4 +40,140 @@ $$r_i = y_i - (Mx_i + b).$$
 
 One approach to finding a line is to find the values for $M$ and $b$ that 
 minimize the following function
-$$f(M,b) = \sum_{i=1}^N |y_i - (Mx_i + b)|.$$
+$$f(M,b) = \sum_{i=1}^N |r_i| = \sum_{i=1}^N |y_i - (Mx_i + b)|.$$
+
+An alternative approach is to find the values for $M$ and $b$ that minimize the 
+following function
+$$f(M,b) = \sum_{i=1}^N r_i^2 = \sum_{i=1}^N [y_i - (Mx_i + b)]^2$$
+
+and we refer to this function as the sum of the squared residuals. 
+
+The values of $M$ and $b$ that minimize this sim of squared residuals is the 
+regression line. 
+
+
+## Regression line
+
+We can use calculus to take derivatives of this function with respect to $M$ and
+$b$ to find the values for $M$ and $b$ that minimize this sum.
+It turns out the formulas are 
+
+$$\hat{M} = \frac{SXY}{SXX} = 
+\frac{\sum_{i=1}^n (x_i-\overline{x})(y_i-\overline{y})}{\sum_{i=1}^n (x_i-\overline{x})^2}$$
+and 
+$$\hat{b} = \overline{y} - \hat{M}\overline{x}$$
+where
+$$\overline{x} = \frac{1}{N} \sum_{i=1}^N x_i \quad \mbox{and} \quad
+\overline{y} = \frac{1}{N} \sum_{i=1}^N y_i.$$
+
+We use the carat over the slope and intercept to denote that these are 
+estimates of the slope and intercept rather than the true values of the slope
+and the intercept. 
+Since we have only a finite amount of data, we will never know the true slope
+and intercept. 
+
+Using the data above, we can find the slope and intercept using the following
+code
+
+```{r}
+attach(d) # puts x and y in the environment
+
+xbar <- mean(x)
+ybar <- mean(y)
+sxx  <- sum( (x-mean(x))^2 )
+sxy  <- sum( (x-mean(x))*(y-mean(x)) )
+
+Mhat <- sxy/sxx
+bhat <- ybar - Mhat*xbar
+```
+
+We can check out code using
+
+```{r}
+lm(y~x)
+```
+
+
+## Using an optimizer to find the slope and intercept
+
+Although we can derive the slope and intercept for this model,
+that will not always be possible. 
+An alternative is to use a built-in optimizer.
+To use the optimizer we first need to build the function that we are trying to
+minimize. 
+
+```{r}
+f <- function(parameters, y, x) {
+  M <- parameters[1]
+  b <- parameters[2]
+  
+  sum( (y - (M*x + b) )^2 ) 
+}
+```
+
+Now we need to minimize f to find M and b
+
+```{r}
+o = optim(c(0,1), f, y = y, x = x)
+```
+
+First check convergence
+
+```{r}
+o$convergence
+```
+
+This should be 0 for successful convergence. 
+Anything else means something went wrong. 
+
+The optimized values are
+
+```{r}
+o$par
+```
+
+
+## Exponential relationships
+
+Suppose instead of a linear relationship between x and y, we have an exponential
+relationship, e.g. 
+
+$$y = c e^{Mx}.$$
+
+Exponential relationships look like this
+
+```{r}
+plot(x, exp(x/10))
+```
+
+If we take a log of both sides, we have 
+
+$$\log(y) = \log(c) + Mx.$$
+
+where $\log$ is the natural logarithm. 
+
+
+
+So the relationship is linear between $\log(y)$ and $x$ with slope $M$ and 
+intercept $b = log(c)$. In this situation, we can find $c$ and $M$ by
+taking a log of the response variable $y$ and then calculating $c = e^\hat{b}$. 
+
+
+## Asymptotic relationships
+
+Another possibility is that we have a relationship where y increases with x but 
+the increase has diminishing returns and eventually y hits an asymptote (upper 
+limit). 
+One possible relationship is 
+
+$$y = b + c(1-e^{-d*x})$$
+
+where $b$ is the intercept, $b+c$ is the asymptote, and $d$ controls
+how quickly that asymptote is reached. 
+
+An example of this relationship is 
+
+```{r}
+plot(x, 1+2*(1-exp(-x/10)))
+```
+
