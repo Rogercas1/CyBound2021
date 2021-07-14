@@ -1,6 +1,6 @@
 # app.R
 
-The app.R file under CyBound2021/code is a R Shiny demo program that fits and displays an exponential curve using simulated data.  To run, copy and paste the code in app.R to a new Shiny program in RStudio and press the green arrow "Run App" button.
+The app.R file under CyBound2021/code is a R Shiny demo program that fits and displays an exponential curve using simulated data.  To run, copy and paste the code in app.R to a new Shiny program in RStudio and press the green arrow "Run App" button.  This was modified from the "Google Trend Index" app on https://shiny.rstudio.com/
 
 # Things to think about
 
