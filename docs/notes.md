@@ -2,6 +2,30 @@
 
 This document will contain notes of various meetings throughout the summer. 
 
+## 2021-07-14
+
+Previously
+
+- Roger
+  - Abstract briefly describes what was done and what results were found
+  - No blockchain module in PEWI canvas course, but in [Neh Batwara's CC](https://lib.dr.iastate.edu/creativecomponents/708/)
+  - Watched [Ecosystem Market Series: Data Platforms](https://www.youtube.com/watch?v=AN3PI3YBRsI&t=1s&ab_channel=ILSustainableag)
+    - Not too informative/useful
+  - Through Ch 12 of R4DS
+- Jarad
+  - updated Finding a line document with exponential relationship
+  - function to calculate emissions from fertilizer application rate
+- Nick
+  - added shiny app and documentation
+
+For next time
+
+- Roger 
+  - complete Summer Research Symposium application by tomorrow evening
+  - R4DS chapters 17-21
+  - look at [geom_tile](https://ggplot2.tidyverse.org/reference/geom_tile.html) to create yield maps
+
+
 ## 2021-07-12
 
 Previously
