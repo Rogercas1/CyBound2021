@@ -2,6 +2,25 @@
 
 This document will contain notes of various meetings throughout the summer. 
 
+## 2021-07-15
+Meeting with Marshall
+
+-For the Shiny app
+  -add nitrogen leeching  , goes up after "agronomic optimal nitrogen"
+  -add soil carbon level  , goes down after "agronomic optimal nitrogen"
+
+-emphasis on predicting agronomic optimal nitrogen, spatially, temporally, it's weather-dependent
+
+-future project: a spatial-temporal plot showing agronomic optimal nitrogen over a field changing over time depending on some covariates...
+
+-daycent a biogeochemical model, andy van lukey marshall's colleague, daycent provides model-based greenhouse gas emissions
+	- can provide soil carbon "data"
+
+-marshall will send us some other papers, matt helmers, james, nitrogen leeching, phil robertson breakpoint curve paper?
+
+-talk to chad hart about carbon markets
+
+
 ## 2021-07-14
 
 Previously
