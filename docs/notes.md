@@ -3,6 +3,49 @@
 This document will contain notes of various meetings throughout the summer. 
 
 ## 2021-07-15
+
+### Jarad's notes
+
+GHG
+
+Nitrate leaching- breakpoint at optimal N
+Carbon increases with nitrogen at optimal N
+
+Carbon accrual plateaus
+DayCENT/CENTURY/agroibis 
+- biogeochemical model
+
+Agronomic optimum N
+- changes year to year (weather)
+- Changed by landscape position 
+
+Cover crops
+
+Nitrogen
+- ammonium
+- Nitrate (mobile in soils)
+
+Fertilizer
+- organic: legumes, manure
+- Inorganic: urea ammonium nitrate, anhydrous ammonia, 
+
+Ask Chad Hart about carbon markets
+
+Ask Matt Helmers about nitrate leaching 
+
+Phosphorus doesn’t leach as quickly
+
+Nitrogen rate trials
+- John sawyer
+- Mike castellano
+- Soyirous archontu
+
+
+
+
+### Nick's notes
+
+
 Meeting with Marshall
 
 -For the Shiny app
