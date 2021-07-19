@@ -2,6 +2,21 @@
 
 This document will contain notes of various meetings throughout the summer. 
 
+
+## 2021-07-19
+
+Roger todo:
+ - copy code/app.R 
+ - modify to create N fertilizer rate sliderInput
+ - modify output to have 2 sentences: one for yield and one for emission
+ 
+Nick todo:
+ - find yield equation via data or figure
+
+Jarad todo:
+ - ask Matt Helmers about nitrate leaching as a fxn of N fertilizer rate
+ - follow-up with Luis about yield map
+
 ## 2021-07-15
 
 ### Jarad's notes
