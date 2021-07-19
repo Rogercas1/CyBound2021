@@ -12,7 +12,7 @@ Nitrate leaching- breakpoint at optimal N
 Carbon increases with nitrogen at optimal N
 
 Carbon accrual plateaus
-DayCENT/CENTURY/agroibis 
+[DayCENT](https://www2.nrel.colostate.edu/projects/daycent/)/[CENTURY](https://www.cgd.ucar.edu/vemap/abstracts/CENTURY.html)/[Agro-IBIS](https://lter.limnology.wisc.edu/project/agro-ibis) 
 - biogeochemical model
 
 Agronomic optimum N
@@ -29,16 +29,16 @@ Fertilizer
 - organic: legumes, manure
 - Inorganic: urea ammonium nitrate, anhydrous ammonia, 
 
-Ask Chad Hart about carbon markets
+Ask [Chad Hart](http://www2.econ.iastate.edu/faculty/hart/) about carbon markets
 
-Ask Matt Helmers about nitrate leaching 
+Ask [Matt Helmers](https://www.abe.iastate.edu/matthew-helmers/) about nitrate leaching 
 
 Phosphorus doesn’t leach as quickly
 
 Nitrogen rate trials
-- John sawyer
-- Mike castellano
-- Soyirous archontu
+- [John Sawyer](https://www.agron.iastate.edu/people/john-sawyer)
+- [Mike Castellano](https://www.agron.iastate.edu/people/michael-castellano)
+- [Sotirios Archontoulis](https://www.agron.iastate.edu/people/sotirios-archontoulis)
 
 
 
