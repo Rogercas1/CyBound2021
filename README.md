@@ -12,4 +12,18 @@ The three main directories are
 - data/ 
 - code/
 
+# Data files
 
+## `data/ym/basswood_2020.geojson`
+
+Basswood 2020 (Maize) smoothed yield in [GeoJSON](https://geojson.org/) format.
+
+* `yieldMgHaMean`: smoothed yield mean in Mg/Ha.
+* `yieldMgHaVar`: smoothed yield variance in (Mg/Ha)^2.
+
+## `data/ym/basswood_2020.csv`
+
+Basswood 2020 (Maize) smoothed yield in ggplot-enabled long format.
+
+* `yieldMgHaMean`: smoothed yield mean in Mg/Ha.
+* `yieldMgHaVar`: smoothed yield variance in (Mg/Ha)^2.
