@@ -19,10 +19,13 @@ sum.sqr.resids.14 <- function(par) sum((yield.2014-curve(par))^2)
 sum.sqr.resids.13 <- function(par) sum((yield.2013-curve(par))^2)
 
 # finding the curves that minimize sums of squared residuals, and plotting the curves
-optim(c(1,1,1),sum.sqr.resids.14)
-lines(N.rate, curve(c(4.37325817, 3.04312450, 0.01789475)), col = 'blue')
+o.14 <- optim(c(1,1,1),sum.sqr.resids.14)
+o.14$convergence # check that this is 0
 
-optim(c(1,1,1),sum.sqr.resids.13)
-lines(N.rate, curve(c(2.43683907, 3.72905021, 0.01452737
-)), col = 'red')
+o.13 <- optim(c(1,1,1),sum.sqr.resids.13)
+o.13$convergence # check that this is 0
+
+# plotting the curves 
+lines(N.rate, curve(o.14$par), col = 'blue')
+lines(N.rate, curve(o.13$par), col = 'red')
 
