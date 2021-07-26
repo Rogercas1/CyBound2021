@@ -5,7 +5,7 @@ library(dplyr)
 library(readr)
 
 # made-up data
-set.seed(12345)
+set.seed(20210714)
 x <- runif(100)
 y <- 2*exp(3*x)+rnorm(100,0,2)
 trend_data<-data.frame(x,y)
