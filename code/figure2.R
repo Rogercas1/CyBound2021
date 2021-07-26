@@ -1,6 +1,6 @@
 library("tidyverse")
 
-source("emissions.R")
+source("code/emissions.R")
 
 d = data.frame(N = seq(0,240, by=40)) %>% 
   mutate(emissions = emissions(N),
