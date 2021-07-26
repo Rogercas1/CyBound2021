@@ -42,3 +42,6 @@ vignettes/*.pdf
 # Mac file
 .DS_Store
 
+
+r4ds/
+Notes/
