@@ -5,6 +5,8 @@ library(dplyr)
 library(readr)
 library(tidyverse)
 
+source("emissions.R")
+
 x <- c(0:350)
 y<-{2.04*sqrt(exp(.0135*x)*(4090-34*x+.075*x^2))}
 N.data<-data.frame(x,y)
@@ -38,8 +40,7 @@ ui <- fluidPage(theme = shinytheme("lumen"),
 # Define server function
 server <- function(input, output) {
   
-  x.emissions<-function(x) {2.04*sqrt(exp(.0135*x)*(4090-34*x+.075*x^2))
-  }
+  x.emissions <- emissions
   
 #ScatterPlot 
   output$lineplot <- renderPlot({
@@ -49,10 +50,10 @@ server <- function(input, output) {
          xlab = "x", ylab = "y")
     # Display only if smoother is checked
     if(input$smoother){
-      sorted<-sort(N.data$x)
+      sorted <- sort(N.data$x)
       smooth_curve <- apply(matrix(sorted,100,1),1,N.data)
       lines(sorted, smooth_curve, col = "#E6553A", lwd = 3)
-      points(input$x,x.emissions(input$x), col = 'blue', cex = 2, pch = 19)
+      points(input$x, x.emissions(input$x), col = 'blue', cex = 2, pch = 19)
     }
   })
 
