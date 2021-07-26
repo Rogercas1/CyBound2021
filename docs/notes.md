@@ -2,6 +2,20 @@
 
 This document will contain notes of various meetings throughout the summer. 
 
+## 2021-07-26
+
+Jarad todo:
+- Get digital ocean droplet up and running with app
+- Ask someone about NO2 emission vs yield
+
+Roger todo:
+- Shiny app development
+  - Yield function
+  - add yield heatmap
+  - modify yield heatmap for wheat in Mexico
+  - modify "after" yield heatmap based on slidy input
+
+
 
 ## 2021-07-19
 
