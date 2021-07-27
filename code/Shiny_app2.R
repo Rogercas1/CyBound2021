@@ -5,6 +5,7 @@ library(tidyverse)
 
 source("theme_map.R")
 source("emissions.R")
+source("yield.R")
 
 ymPlotDF <- read.csv(file.path("..", "data", "ym", "basswood_2020.csv")) %>%
   dplyr::mutate(wheatplot=yieldMgHaMean*0.9)
@@ -33,6 +34,7 @@ ui <- fluidPage(theme = shinytheme("lumen"),
                   # Output: Description, lineplot, and reference
                   mainPanel(
                     plotOutput(outputId = "lineplot", height = "300px"), 
+                    plotOutput(outputId = "lineplot2", height = "300px"), 
                     textOutput(outputId = "desc")
                   )
                 )
@@ -53,22 +55,48 @@ server <- function(input, output) {
         x     = long,           # Longitudes in the horizontal axis
         y     = lat,            # Latitude in the vertical axis
         group = group,          # More than one data frame row belong to the same poly
-        fill  = yieldMgHaMean   # Fill the polygon with the yield mean
+        fill  = yieldMgHaMean *yield_proportion(300)   # Fill the polygon with the yield mean
       )) +
       scale_fill_distiller(     # Palette from https://colorbrewer2.org/#type=sequential&scheme=Greens&n=3
         palette   = "Greens",   # 'cause chlorophyll
         direction = 1,          # Darker is higher
-        limits    = c(0, NA)    # Set color bar minimum at zero, max TBD by ggplot
+        limits    = c(0, 15)    # Set color bar minimum at zero, max TBD by ggplot
       ) +
       labs(
-        title    = "Yield map",
-        subtitle = "Basswood 2020 (Maize)",
+        title    = "Current practice (300 Units of Nitrogen Fertilizer (kg ha^-1)",
+        subtitle = "Wheat Yield",
         fill     = expression("Yield in" ~ MgHa^-1 ~ "Darker is higher")
       ) +
       theme_map() +
       theme( # Play with background color to decide if gray helps with contrast
         panel.background = element_rect(fill = "gray80")
       )
+    
+  })
+    
+    output$lineplot2 <- renderPlot({
+      
+      ggplot(na.omit(ymPlotDF)) + # Omits 95 pixels without information
+        geom_polygon(aes(
+          x     = long,           # Longitudes in the horizontal axis
+          y     = lat,            # Latitude in the vertical axis
+          group = group,          # More than one data frame row belong to the same poly
+          fill  = yieldMgHaMean *yield_proportion(input$x)  # Fill the polygon with the yield mean
+        )) +
+        scale_fill_distiller(     # Palette from https://colorbrewer2.org/#type=sequential&scheme=Greens&n=3
+          palette   = "Greens",   # 'cause chlorophyll
+          direction = 1,          # Darker is higher
+          limits    = c(0, 15)    # Set color bar minimum at zero, max TBD by ggplot
+        ) +
+        labs(
+          title    = "Current practice (300 Units of Nitrogen Fertilizer (kg ha^-1)",
+          subtitle = "Wheat Yield",
+          fill     = expression("Yield in" ~ MgHa^-1 ~ "Darker is higher")
+        ) +
+        theme_map() +
+        theme( # Play with background color to decide if gray helps with contrast
+          panel.background = element_rect(fill = "gray80")
+        )
     
   })
 
