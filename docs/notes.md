@@ -2,6 +2,17 @@
 
 This document will contain notes of various meetings throughout the summer. 
 
+## 2021-07-28
+
+- Possibly presenting to Science Bound
+- TODO: Roger will create emissions figures
+  - Red color
+  - Use emissions() function
+- TODO: Nick will determine N2O synthetic data
+- TODO: Jarad will create nitrate leaching synthetic data
+- TODO: Roger will put basswood data in code/ directory
+
+
 ## 2021-07-26
 
 Jarad todo:
