@@ -12,9 +12,15 @@ The three main directories are
 - data/ 
 - code/
 
-# Data files
 
-## `data/ym/basswood_2020.geojson`
+## Online app
+
+The online app to visualize the effects of nitrogen fertilizer rate amount
+is available [here](http://167.71.158.10:3838/effects_of_fertilizer_rate/). 
+
+## Data files
+
+### `data/ym/basswood_2020.geojson`
 
 Basswood 2020 (Maize) smoothed yield in [GeoJSON](https://geojson.org/) format.
 
