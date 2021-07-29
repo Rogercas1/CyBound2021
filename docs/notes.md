@@ -2,6 +2,10 @@
 
 This document will contain notes of various meetings throughout the summer. 
 
+## 2021-07-29
+
+Continue practicing presentation
+
 ## 2021-07-28
 
 - Possibly presenting to Science Bound
