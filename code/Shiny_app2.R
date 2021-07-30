@@ -8,10 +8,17 @@ source("theme_map.R")
 source("emissions.R")
 source("yield.R")
 
-ymPlotDF <- read.csv(file.path("..", "data", "ym", "basswood_2020.csv")) %>%
-  dplyr::mutate(wheatplot=yieldMgHaMean*0.9)%>%
-  select(long, lat, group, wheatplot)%>%
+ymPlotDF <- read.csv(file.path("basswood_2020.csv")) %>%
+  dplyr::mutate(wheatplot=yieldMgHaMean*0.9, 
+                emplot=(1/yieldMgHaMean)*1000+2000)%>%
+  select(long, lat, group, wheatplot, emplot)%>%
   na.omit
+
+
+
+em_proportion<-function(N.rate){
+  return( exp((N.rate-300)/300) )
+}
 
 g_yield<-ggplot(ymPlotDF) + # Omits 95 pixels without information
   geom_polygon(aes(
@@ -35,24 +42,68 @@ g_yield<-ggplot(ymPlotDF) + # Omits 95 pixels without information
     panel.background = element_rect(fill = "gray80")
   )
 
+g_yield_emissions<-ggplot(ymPlotDF) + # Omits 95 pixels without information
+  geom_polygon(aes(
+    x     = long,           # Longitudes in the horizontal axis
+    y     = lat,            # Latitude in the vertical axis
+    group = group,          # More than one data frame row belong to the same poly
+    fill  =  emplot*em_proportion(300)   # Fill the polygon with the yield mean
+  )) +
+  scale_fill_distiller(     # Palette from https://colorbrewer2.org/#type=sequential&scheme=Greens&n=3
+    palette   = "Reds",   # 'cause chlorophyll
+    direction = 1,          # Darker is higher
+    limits    = c(0, 3000)    # Set color bar minimum at zero, max TBD by ggplot
+  ) +
+  labs(
+    title    = "Current practice (300 Units of Nitrogen Fertilizer (kg ha^-1)",
+    subtitle = "Wheat Yield",
+    fill     = expression("Emissions in" ~ MgHa^-1 ~ "Darker is higher")
+  ) +
+  theme_map() +
+  theme( # Play with background color to decide if gray helps with contrast
+    panel.background = element_rect(fill = "gray80")
+  )
+
+g_yield_leaching<-ggplot(ymPlotDF) + # Omits 95 pixels without information
+  geom_polygon(aes(
+    x     = long,           # Longitudes in the horizontal axis
+    y     = lat,            # Latitude in the vertical axis
+    group = group,          # More than one data frame row belong to the same poly
+    fill  =  wheatplot*yield_proportion(300)   # Fill the polygon with the yield mean
+  )) +
+  scale_fill_distiller(     # Palette from https://colorbrewer2.org/#type=sequential&scheme=Greens&n=3
+    palette   = "Blues",   # 'cause chlorophyll
+    direction = 1,          # Darker is higher
+    limits    = c(0, 15)    # Set color bar minimum at zero, max TBD by ggplot
+  ) +
+  labs(
+    title    = "Current practice (300 Units of Nitrogen Fertilizer (kg ha^-1)",
+    subtitle = "Wheat Yield",
+    fill     = expression("Leaching in" ~ MgHa^-1 ~ "Darker is higher")
+  ) +
+  theme_map() +
+  theme( # Play with background color to decide if gray helps with contrast
+    panel.background = element_rect(fill = "gray80")
+  )
+
+
 
 ui <- fluidPage(theme = shinytheme("lumen"),
-                titlePanel("N2O Emissions"),
+                titlePanel("Prototype:N Fertilizer Relationships"),
                 sidebarLayout(
                   sidebarPanel(
-                  mainPanel(
+                
                    
                                      sliderInput(inputId = "x", label = "Nitrogen Fertilizer (kg ha^-1)",
                                                  min = 0, max = 350, value = 0, step = 1,
                                                  animate = animationOptions(interval = 100)),
                                      HTML("Select Nitrogen Fertilizer rate")
-                    )
+                  
                   ),
                   
                   # Output: Description, lineplot, and reference
                   mainPanel(
-                    plotOutput(outputId = "lineplot", height = "300px"), 
-                    textOutput(outputId = "desc")
+                    plotOutput(outputId = "lineplot"), 
                   )
                 )
 )
@@ -62,7 +113,7 @@ ui <- fluidPage(theme = shinytheme("lumen"),
 # Define server function
 server <- function(input, output) {
   
-  emissions(x)
+
   
 #ScatterPlot 
   
@@ -88,26 +139,62 @@ server <- function(input, output) {
       panel.background = element_rect(fill = "gray80")
     )
   
-  output$lineplot <- renderPlot({
+  g_yield_emissions_modified<-ggplot(ymPlotDF) + # Omits 95 pixels without information
+    geom_polygon(aes(
+      x     = long,           # Longitudes in the horizontal axis
+      y     = lat,            # Latitude in the vertical axis
+      group = group,          # More than one data frame row belong to the same poly
+      fill  =  emplot*em_proportion(input$x)   # Fill the polygon with the yield mean
+    )) +
+    scale_fill_distiller(     # Palette from https://colorbrewer2.org/#type=sequential&scheme=Greens&n=3
+      palette   = "Reds",   # 'cause chlorophyll
+      direction = 1,          # Darker is higher
+      limits    = c(0, 3000)    # Set color bar minimum at zero, max TBD by ggplot
+    ) +
+    labs(
+      title    = "Current practice (300 Units of Nitrogen Fertilizer (kg ha^-1)",
+      subtitle = "Wheat Yield",
+      fill     = expression("Emissions in" ~ MgHa^-1 ~ "Darker is higher")
+    ) +
+    theme_map() +
+    theme( # Play with background color to decide if gray helps with contrast
+      panel.background = element_rect(fill = "gray80")
+    )
+  
+  g_yield_leaching_modified<-ggplot(ymPlotDF) + # Omits 95 pixels without information
+    geom_polygon(aes(
+      x     = long,           # Longitudes in the horizontal axis
+      y     = lat,            # Latitude in the vertical axis
+      group = group,          # More than one data frame row belong to the same poly
+      fill  =  wheatplot*yield_proportion(300)   # Fill the polygon with the yield mean
+    )) +
+    scale_fill_distiller(     # Palette from https://colorbrewer2.org/#type=sequential&scheme=Greens&n=3
+      palette   = "Blues",   # 'cause chlorophyll
+      direction = 1,          # Darker is higher
+      limits    = c(0, 15)    # Set color bar minimum at zero, max TBD by ggplot
+    ) +
+    labs(
+      title    = "Current practice (300 Units of Nitrogen Fertilizer (kg ha^-1)",
+      subtitle = "Wheat Yield",
+      fill     = expression("Leaching in" ~ MgHa^-1 ~ "Darker is higher")
+    ) +
+    theme_map() +
+    theme( # Play with background color to decide if gray helps with contrast
+      panel.background = element_rect(fill = "gray80"))
+  
+      output$lineplot <- renderPlot({
     
-    grid.arrange(g_yield, g_yield_modified, ncol=2)
+    grid.arrange(g_yield, g_yield_modified, g_yield_emissions, g_yield_emissions_modified, g_yield_leaching, g_yield_leaching_modified, ncol=2)
     
     
   })
+  
     
-
   
  # Pull in description of trend
-  output$desc <- renderText({
-    {  
-      e <- emissions(input$x)
-      paste(round(e), "predicted emissions")
-    }
-  })
-  
+
 }
 
- 
 
 # Create Shiny object
 shinyApp(ui = ui, server = server)
