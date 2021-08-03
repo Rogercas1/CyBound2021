@@ -10,14 +10,24 @@ source("yield.R")
 
 ymPlotDF <- read.csv(file.path("basswood_2020.csv")) %>%
   dplyr::mutate(wheatplot=yieldMgHaMean*0.9, 
-                emplot=(1/yieldMgHaMean)*1000+2000)%>%
-  select(long, lat, group, wheatplot, emplot)%>%
+                emplot=(1/yieldMgHaMean)*1000+2000, 
+                leachplot=5*(1/yieldMgHaMean)+5)%>%
+  select(long, lat, group, wheatplot, emplot, leachplot)%>%
   na.omit
 
 
 
 em_proportion<-function(N.rate){
   return( exp((N.rate-300)/300) )
+}
+
+leach_proportion<-function(N.rate){
+  if(N.rate < 140){
+    prop <- 1
+  }else {
+    prop <- 3*((N.rate - 140)/140)    
+  }
+  return(prop)
 }
 
 g_yield<-ggplot(ymPlotDF) + # Omits 95 pixels without information
@@ -69,7 +79,7 @@ g_yield_leaching<-ggplot(ymPlotDF) + # Omits 95 pixels without information
     x     = long,           # Longitudes in the horizontal axis
     y     = lat,            # Latitude in the vertical axis
     group = group,          # More than one data frame row belong to the same poly
-    fill  =  wheatplot*yield_proportion(300)   # Fill the polygon with the yield mean
+    fill  =  leachplot*leach_proportion(300)   # Fill the polygon with the yield mean
   )) +
   scale_fill_distiller(     # Palette from https://colorbrewer2.org/#type=sequential&scheme=Greens&n=3
     palette   = "Blues",   # 'cause chlorophyll
@@ -103,7 +113,8 @@ ui <- fluidPage(theme = shinytheme("lumen"),
                   
                   # Output: Description, lineplot, and reference
                   mainPanel(
-                    plotOutput(outputId = "lineplot"), 
+                    column(width=12,
+                    plotOutput(outputId = "lineplot", height=600)), 
                   )
                 )
 )
@@ -166,7 +177,7 @@ server <- function(input, output) {
       x     = long,           # Longitudes in the horizontal axis
       y     = lat,            # Latitude in the vertical axis
       group = group,          # More than one data frame row belong to the same poly
-      fill  =  wheatplot*yield_proportion(input$x)   # Fill the polygon with the yield mean
+      fill  =  leachplot*leach_proportion(input$x)   # Fill the polygon with the yield mean
     )) +
     scale_fill_distiller(     # Palette from https://colorbrewer2.org/#type=sequential&scheme=Greens&n=3
       palette   = "Blues",   # 'cause chlorophyll
